@@ -1,0 +1,15 @@
+<!-- 
+<img #img [src]="'assets/' + imagesInfo[index][0] + '.jpg'">
+<button (click)="select(0)">nature</button>
+<button (click)="select(1)">people and pets</button>
+<button (click)="select(2)">objects</button>
+<button (click)="select(3)">buildings</button>
+<button (click)="select(4)">transportation</button>
+<div>
+  <pre>{{ output | json }}</pre>
+</div>
+<div>
+  <pre>{{ imagesInfo | json }}</pre>
+</div> -->
+<pre>{{ classifications | json }}</pre>
+<img #img *ngFor="let image of trainingImagesInfo" [src]="'assets/' + image[0] + '.jpg'">

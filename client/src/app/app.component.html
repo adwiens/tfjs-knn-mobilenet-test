@@ -2,8 +2,8 @@
   <mat-card-title>{{ image[1].user_name }}</mat-card-title>
   <img #img mat-card-image [src]="'assets/' + image[0] + '.jpg'">
   <mat-card-content>
-    <mat-chip-list *ngIf="image[1].categories as categories; else loading">
-      <mat-chip *ngFor="let c of categories">{{ c }}</mat-chip>
+    <mat-chip-list *ngIf="image[1].category as c; else loading">
+      <mat-chip>{{ c }}</mat-chip>
     </mat-chip-list>
     <ng-template #loading>
       <mat-progress-bar mode="indeterminate"></mat-progress-bar>

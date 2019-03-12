@@ -277,11 +277,6 @@
   resolved "https://registry.yarnpkg.com/@tensorflow-models/mobilenet/-/mobilenet-1.0.0.tgz#14209d1d8fb648719534e06e442218fe5917a39a"
   integrity sha512-NIi4wMIDi9d+zpB0DYlepQQD4qsh16Gxv8OtQg1bBMO8g+SX9c2st4EiiJJGQhTI1GXmtZgKhOHIXnsLqUlgow==
 
-"@tensorflow-models/universal-sentence-encoder@1.0.1":
-  version "1.0.1"
-  resolved "https://registry.yarnpkg.com/@tensorflow-models/universal-sentence-encoder/-/universal-sentence-encoder-1.0.1.tgz#1082b9ad6c39ac6ddb3c15d8466228fdf06bf210"
-  integrity sha512-Hwn3GQwWPlORYQpYVOmUdoVTWl+/tkYEo4Vcy40rypXTRoRcatGH4sbYgT0UIWRfoCROhaAiE5KLPxoXDZsVRg==
-
 "@tensorflow/tfjs-converter@1.0.0":
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/@tensorflow/tfjs-converter/-/tfjs-converter-1.0.0.tgz#cdd7bbf9f39fde93156fb1bddeac16a8ab157d6d"

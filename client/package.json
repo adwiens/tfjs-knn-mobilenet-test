@@ -24,7 +24,6 @@
     "@angular/router": "7.2.0",
     "@tensorflow-models/knn-classifier": "1.0.0",
     "@tensorflow-models/mobilenet": "1.0.0",
-    "@tensorflow-models/universal-sentence-encoder": "1.0.1",
     "@tensorflow/tfjs": "1.0.0",
     "core-js": "2.5.4",
     "lodash": "4.17.11",

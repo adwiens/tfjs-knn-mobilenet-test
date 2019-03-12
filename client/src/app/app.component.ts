@@ -1,10 +1,18 @@
 import { Component, QueryList, ViewChildren, AfterViewInit, ElementRef } from '@angular/core';
-import { MatCardImage } from '@angular/material';
 import { toPairs } from 'lodash';
-// import * as tf from '@tensorflow/tfjs';
+import * as tf from '@tensorflow/tfjs';
 import * as mobilenet from '@tensorflow-models/mobilenet';
+import * as knnClassifier from '@tensorflow-models/knn-classifier';
 
-import { imagesInfo, Info } from './images-info';
+import { Info, imagesInfo, trainingImagesInfo, trainingImagesClasses } from './images-info';
+
+const classes = [
+  'nature',
+  'people',
+  'objects',
+  'buildings',
+  'transportation',
+];
 
 @Component({
   selector: 'app-root',
@@ -13,6 +21,8 @@ import { imagesInfo, Info } from './images-info';
 })
 export class AppComponent implements AfterViewInit {
   @ViewChildren('img') images: QueryList<ElementRef>;
+  trainingImagesInfo = trainingImagesInfo;
+  trainingImagesClasses = trainingImagesClasses;
   imagesInfo: [string, Info][] = toPairs(imagesInfo);
   model?: mobilenet.MobileNet;
 
@@ -21,9 +31,16 @@ export class AppComponent implements AfterViewInit {
   }
 
   private async loadModelAndLabelImages() {
-    // Load the model
+    // Load the model and classifier
     console.warn('LOADING MODEL..');
     const model = await mobilenet.load();
+    const knn = knnClassifier.create();
+
+    // Classify images:
+    this.trainingImagesInfo.forEach(img => {
+      const label = this.trainingImagesClasses.find(tic => tic[0] === img[0])![1].label;
+      knn.addExample(tf.tensor1d(img[1][0]), label);
+    });
     
     // Classify the images
     const images = this.images.toArray();
@@ -33,8 +50,10 @@ export class AppComponent implements AfterViewInit {
       const img: HTMLImageElement = images[i].nativeElement;
       console.log(img);
       const info = this.imagesInfo.find(info => img.src.includes(info[0]))![1];
-      const predictions = await model.classify(img);
-      info.categories = predictions[0].className.split(', ').slice(0, 2);
+      const logits = await (await model.infer(img, true)).array();
+      const labels = await knn.predictClass(tf.tensor1d(logits[0]));
+      info.category = classes[labels.classIndex];
+      console.warn('redicted: ', info.category)
     }
   }
 }
