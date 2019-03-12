@@ -1,0 +1,21 @@
+:host {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  flex-wrap: wrap;
+  padding-top: 30px;
+}
+
+mat-card {
+  width: 320px;
+  margin: 10px;
+  mat-card-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 32px;
+  }
+  mat-progress-bar {
+    width: 100px;
+  }
+}
